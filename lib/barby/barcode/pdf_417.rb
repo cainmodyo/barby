@@ -6,7 +6,7 @@ import 'Pdf417lib'
 module Barby
   class Pdf417 < Barcode2D
     DEFAULT_OPTIONS = {
-      :options       => 0,
+      :options       => 128,
       :y_height      => 3,
       :aspect_ratio  => 0.5, 
       :error_level   => 0,
@@ -58,7 +58,6 @@ module Barby
     end
 
     def encoding
-      @pdf417.setOptions(Java::Pdf417lib.PDF417_INVERT_BITMAP)
       @pdf417.paintCode()
 
       Rails.logger.debug 'PARCHADOOOOO'
