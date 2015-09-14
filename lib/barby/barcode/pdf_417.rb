@@ -58,7 +58,11 @@ module Barby
     end
 
     def encoding
+      @pdf417.setOptions(Java::Pdf417lib.PDF417_INVERT_BITMAP)
       @pdf417.paintCode()
+
+      Rails.logger.debug 'PARCHADOOOOO'
+      puts 'PARCHADOOOOO'
 
       cols = (@pdf417.getBitColumns() - 1) / 8 + 1
       enc = []
@@ -68,7 +72,7 @@ module Barby
           row = ""
           enc << row
         end
-        row << sprintf("%08b", (byte & 0xff) | 0x100)
+        row << sprintf("%08b", (byte & 0xff) | 0x100)[1..-1]
       end
       enc
     end
